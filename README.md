@@ -17,9 +17,32 @@ Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN�
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+####相关命令
+
+```
+# 预处理训练数据集
+python tools/voc2012.py --data_dir ./data/voc2012_raw/VOCdevkit/VOC2012 --split train --output_file ./data/voc2012_train.tfrecord
+
+# 预处理验证数据集
+python tools/voc2012.py --data_dir ./data/voc2012_raw/VOCdevkit/VOC2012 --split val --output_file ./data/voc2012_val.tfrecord
+
+#训练tiny
+python train.py --dataset ./data/voc2012_train.tfrecord --val_dataset ./data/voc2012_val.tfrecord --classes ./data/voc2012.names --num_classes 4 --batch_size 1 --epochs 10
+
+# 识别
+# yolov3-tiny
+python detect.py --classes ./data/voc2012.names --weights ./checkpoints/yolov3_train_5.tf  --tiny --image ./data/head.jpg --num_classes 4
+
+# webcam
+python detect_video.py --classes ./data/voc2012.names --weights ./checkpoints/yolov3_train_6.tf  --tiny --num_classes 1 --video 0
+
+# video file
+python detect_video.py --video path_to_file.mp4 --weights ./checkpoints/yolov3_train_5.tf  --tiny
+
+# video file with output
+python detect_video.py --video path_to_file.mp4 --output ./output.avi
+
+```
 
 #### 参与贡献
 
