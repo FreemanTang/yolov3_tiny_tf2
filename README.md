@@ -36,6 +36,9 @@ python detect.py --classes ./data/voc2012.names --weights ./checkpoints/yolov3_t
 # webcam
 python detect_video.py --classes ./data/voc2012.names --weights ./checkpoints/yolov3_train_6.tf  --tiny --num_classes 1 --video 0
 
+# CSI camera
+python3 detect_video.py --classes ./data/voc2012.names --weights ./checkpoints/yolov3_tiny_train_5.tf  --tiny --video CSI --num_classes 4
+
 # video file
 python detect_video.py --video path_to_file.mp4 --weights ./checkpoints/yolov3_train_5.tf  --tiny
 
